@@ -6,6 +6,7 @@ const grantAccessContainer = document.querySelector(".grant-location-container")
 const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
+const showingAnError = document.querySelector(".showingError");
 
 
 //initially vairables need????
@@ -14,6 +15,7 @@ let oldTab = userTab;
 const API_KEY = "d1845658f92b31c64bd94f06f7188c9c";
 oldTab.classList.add("current-tab");
 getfromSessionStorage();
+
 
 function switchTab(newTab) {
     if(newTab != oldTab) {
@@ -56,6 +58,8 @@ function getfromSessionStorage() {
         //agar local coordinates nahi mile
        
         grantAccessContainer.classList.add("active");
+        showingAnError.classList.remove("active");
+        document.querySelector(".showingError").style.display = "none";
     }
     else {
         const coordinates = JSON.parse(localCoordinates);
@@ -70,6 +74,7 @@ async function fetchUserWeatherInfo(coordinates) {
     grantAccessContainer.classList.remove("active");
     //make loader visible
     loadingScreen.classList.add("active");
+    showingAnError.classList.remove("active");
     
 
     //API CALL
@@ -83,8 +88,10 @@ async function fetchUserWeatherInfo(coordinates) {
         // -----------------------------------------------------------------
         loadingScreen.classList.remove("active");
         document.querySelector(".showingError").style.display = "none";
+        
         userInfoContainer.classList.add("active");
-
+        
+         
         
         renderWeatherInfo(data);
     }
@@ -154,6 +161,7 @@ searchForm.addEventListener("submit", (e) => {
     let cityName = searchInput.value;
 
     if(cityName === "")
+        
         return;
     else 
         fetchSearchWeatherInfo(cityName);
@@ -174,10 +182,13 @@ async function fetchSearchWeatherInfo(city) {
           );
 
           if(response.status == 404){
+            
             loadingScreen.classList.remove("active");
             grantAccessContainer.classList.remove("active");
+            
             document.querySelector(".showingError").style.display = "flex";
             document.querySelector(".sub-container").style.display = "none";
+            
             
           }
           else{
@@ -185,6 +196,7 @@ async function fetchSearchWeatherInfo(city) {
             loadingScreen.classList.remove("active");
             grantAccessContainer.classList.remove("active");
             userInfoContainer.classList.add("active");
+            
             renderWeatherInfo(data);
             
             document.querySelector(".showingError").style.display = "none";
@@ -194,7 +206,7 @@ async function fetchSearchWeatherInfo(city) {
        
     }
     catch(err) {
-      
+        
     }
 }
 
