@@ -14,7 +14,8 @@
   --colorLight2: #f9f7f7;
 }
 body {
-  overflow-x: hidden;
+  overflow: auto;
+  margin: 0 auto;
   background-color: #2d5483ee;
 }
 
@@ -22,7 +23,7 @@ body {
   width: 100vw;
   height: 100vh;
   color: var(--colorLight2);
-/*   background-image: linear-gradient(160deg, #112d4e 0%, #3f72af 100%); */
+  /* background-image: linear-gradient(160deg, #112d4e 0%, #3f72af 100%); */
 }
 
 h1 {
@@ -70,17 +71,22 @@ h1 {
   margin-bottom: 10px;
 }
 
+
 .sub-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+
+
 .grant-location-container {
   display: none;
+  flex-direction: column;
+  align-items: center;
 }
 
-.grant-location-container.active {
+.grant-location-container .active{
   display: flex;
 }
 
@@ -103,9 +109,11 @@ h1 {
 
 .loading-container {
   display: none;
+  flex-direction: column;
+  align-items: center;
 }
 
-.loading-container.active {
+.loading-container .active {
   display: flex;
 }
 
@@ -115,10 +123,14 @@ h1 {
 
 .user-info-container {
   display: none;
+  
+  flex-direction: column;
+  align-items: center;
 }
 
 .user-info-container.active {
   display: flex;
+ 
 }
 
 .name {
@@ -165,7 +177,7 @@ h1 {
 }
 
 .parameter {
-  width: 100%;
+  width: 80%;
   max-width: 200px;
   background-color: rgba(219, 226, 239, 0.5);
   border-radius: 5px;
@@ -238,14 +250,18 @@ h1 {
 
 .showingError {
   display: none;
+  flex-direction: column;
 }
 .showingError .active {
   display: flex;
+ 
+ 
 }
 
 .notFound {
   display: flex;
   margin: 0 auto;
+  
 }
 .cityNotFound {
   margin: 0 auto;
@@ -254,14 +270,17 @@ h1 {
   margin-top: 0.6rem;
 }
 
+
+
 @media screen and (max-width: 580px) {
+  
   .name {
     margin-bottom: 0.5rem;
   }
 
   .user-info-container p[data-temp] {
     font-size: 2rem;
-    margin: -0.5rem 0;
+   
   }
   .parameter p:first-of-type {
     font-size: 1rem;
